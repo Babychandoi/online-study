@@ -109,8 +109,6 @@ const enrollmentController = {
       });
     }
 
-    enrollment.status = status;
-
     if (status === 'completed') {
       enrollment.complete();
     } else if (status === 'dropped') {
@@ -119,6 +117,8 @@ const enrollmentController = {
       if (student) {
         student.unenrollFromCourse(enrollment.courseId);
       }
+    } else {
+      enrollment.status = status;
     }
 
     res.json({
